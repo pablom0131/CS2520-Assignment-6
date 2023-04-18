@@ -47,7 +47,7 @@ largenumberfont = pygame.font.SysFont("impact", 30)
 scorefont = pygame.font.SysFont("impact", 20)
 
 #images
-img = pygame.image.load('goalie.png')
+img = pygame.image.load('goalie.jpg')
 img_b = pygame.image.load('soccer_ball.png')
 
 
