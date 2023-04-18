@@ -47,8 +47,8 @@ largenumberfont = pygame.font.SysFont("impact", 30)
 scorefont = pygame.font.SysFont("impact", 20)
 
 #images
-img = pygame.image.load('goalie.png')
-img_b = pygame.image.load('../soccer_ball.png')
+img = pygame.image.load("Intro to Pygame Graphics\major league soccer animation\goalie.png")
+img_b = pygame.image.load('Intro to Pygame Graphics\soccer_ball.png')
 
 
 DARKNESS = pygame.Surface(SIZE)
@@ -322,15 +322,7 @@ while not done:
     screen.blit(SAVES, (460, 100))
 
 
-    #goal
-    pygame.draw.rect(screen, WHITE, [320, 140, 160, 80], 5)
-    pygame.draw.line(screen, WHITE, [340, 200], [460, 200], 3)
-    pygame.draw.line(screen, WHITE, [320, 220], [340, 200], 3)
-    pygame.draw.line(screen, WHITE, [480, 220], [460, 200], 3)
-    pygame.draw.line(screen, WHITE, [320, 140], [340, 200], 3)
-    pygame.draw.line(screen, WHITE, [480, 140], [460, 200], 3)
-
-
+    
 
     #6 yard line goal box
     pygame.draw.line(screen, WHITE, [310, 220], [270, 270], 3)
@@ -376,9 +368,44 @@ while not done:
     pygame.draw.ellipse(screen, light_color, [650, 20, 20, 20])
     pygame.draw.ellipse(screen, light_color, [670, 20, 20, 20])
     pygame.draw.line(screen, GRAY, [590, 20], [690, 20], 2)
-'''
+    '''
 
-    #net
+    def draw_goal():
+        pygame.draw.rect(screen, WHITE, [320, 140, 160, 80], 5)
+        pygame.draw.line(screen, WHITE, [340, 200], [460, 200], 3)
+        pygame.draw.line(screen, WHITE, [320, 220], [340, 200], 3)
+        pygame.draw.line(screen, WHITE, [480, 220], [460, 200], 3)
+        pygame.draw.line(screen, WHITE, [320, 140], [340, 200], 3)
+        pygame.draw.line(screen, WHITE, [480, 140], [460, 200], 3)
+
+        #back of net vertical
+        for i in range(10):
+            pygame.draw.line(screen, WHITE, [384 + (i*4), 140], [384 + (i * 4), 200], 1)
+        for i in range(13):
+            pygame.draw.line(screen, WHITE, [325 + (i*5), 140], [341 + (i * 3), 200], 1)
+            pygame.draw.line(screen, WHITE, [424 + (i*5), 140], [423 + (i * 3), 200], 1)
+            #back of net horizontal
+            pygame.draw.line(screen, WHITE, [324, 144 + (i*4)], [476, 144 + (i*4)], 1)
+
+        #net left and right
+        for i in range(7):
+            pygame.draw.line(screen, WHITE, [320, 140], [324 + (i * 2), 216 - (i*2)], 1)
+            pygame.draw.line(screen, WHITE, [480, 140], [476 - (i * 2), 216 - (i*2)], 1)
+    
+    # Calling the method
+    draw_goal()
+
+    """
+    #goal
+    pygame.draw.rect(screen, WHITE, [320, 140, 160, 80], 5)
+    pygame.draw.line(screen, WHITE, [340, 200], [460, 200], 3)
+    pygame.draw.line(screen, WHITE, [320, 220], [340, 200], 3)
+    pygame.draw.line(screen, WHITE, [480, 220], [460, 200], 3)
+    pygame.draw.line(screen, WHITE, [320, 140], [340, 200], 3)
+    pygame.draw.line(screen, WHITE, [480, 140], [460, 200], 3)
+
+
+    #net back vertical
     pygame.draw.line(screen, WHITE, [325, 140], [341, 200], 1)
     pygame.draw.line(screen, WHITE, [330, 140], [344, 200], 1)
     pygame.draw.line(screen, WHITE, [335, 140], [347, 200], 1)
@@ -415,7 +442,7 @@ while not done:
     pygame.draw.line(screen, WHITE, [470, 140], [456, 200], 1)
     pygame.draw.line(screen, WHITE, [475, 140], [459, 200], 1)
 
-    #net part 2
+    #net part 2 left side
     pygame.draw.line(screen, WHITE, [320, 140], [324, 216], 1)
     pygame.draw.line(screen, WHITE, [320, 140], [326, 214], 1)
     pygame.draw.line(screen, WHITE, [320, 140], [328, 212], 1)
@@ -425,7 +452,7 @@ while not done:
     pygame.draw.line(screen, WHITE, [320, 140], [336, 204], 1)
     pygame.draw.line(screen, WHITE, [320, 140], [338, 202], 1)
 
-    #net part 3
+    #net part 3 right side
     pygame.draw.line(screen, WHITE, [480, 140], [476, 216], 1)
     pygame.draw.line(screen, WHITE, [480, 140], [474, 214], 1)
     pygame.draw.line(screen, WHITE, [480, 140], [472, 212], 1)
@@ -435,7 +462,7 @@ while not done:
     pygame.draw.line(screen, WHITE, [480, 140], [464, 204], 1)
     pygame.draw.line(screen, WHITE, [480, 140], [462, 202], 1)
 
-    #net part 4
+    #net part 4 back horizontal
     pygame.draw.line(screen, WHITE, [324, 144], [476, 144], 1)
     pygame.draw.line(screen, WHITE, [324, 148], [476, 148], 1)
     pygame.draw.line(screen, WHITE, [324, 152], [476, 152], 1)
@@ -450,6 +477,7 @@ while not done:
     pygame.draw.line(screen, WHITE, [335, 188], [465, 188], 1)
     pygame.draw.line(screen, WHITE, [335, 192], [465, 192], 1)
     pygame.draw.line(screen, WHITE, [335, 196], [465, 196], 1)
+    """
 
     #goalie
     screen.blit(img,(goalie_x, goalie_y))    
