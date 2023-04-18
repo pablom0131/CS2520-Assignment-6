@@ -492,7 +492,15 @@ while not done:
     pygame.draw.polygon(screen, WHITE, [[120, 180], [0, 100], [0, 290]])
     #people
     
-
+    #Drawing flags
+    def draw_flag(flagColor, flagPoints, poleColor, poleTop, poleBottom, poleWidth):
+        pygame.draw.line(screen, poleColor, poleTop, poleBottom, poleWidth)
+        pygame.draw.polygon(screen, flagColor, flagPoints)
+    
+    draw_flag(RED, ([132, 190], [125, 196], [135, 205]), BRIGHT_YELLOW, [140, 220], [135, 190], 3)
+    draw_flag(RED, ([668, 190], [675, 196], [665, 205]), BRIGHT_YELLOW, [660, 220], [665, 190], 3)
+    
+    """
     #corner flag right
     pygame.draw.line(screen, BRIGHT_YELLOW, [140, 220], [135, 190], 3)
     pygame.draw.polygon(screen, RED, [[132, 190], [125, 196], [135, 205]])
@@ -500,7 +508,7 @@ while not done:
     #corner flag left
     pygame.draw.line(screen, BRIGHT_YELLOW, [660, 220], [665, 190], 3)
     pygame.draw.polygon(screen, RED, [[668, 190], [675, 196], [665, 205]]) 
-
+    """
 
     #soccerball
     screen.blit(img_b, (ball_x, ball_y))
