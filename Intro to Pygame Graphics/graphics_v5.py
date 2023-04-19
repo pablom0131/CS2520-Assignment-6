@@ -44,8 +44,8 @@ largenumberfont = pygame.font.SysFont("impact", 30)
 scorefont = pygame.font.SysFont("impact", 20)
 
 # Images
-img = pygame.image.load('goalie.jpg')
-img_b = pygame.image.load('soccer_ball.png')
+img = pygame.image.load('Intro to Pygame Graphics\major league soccer animation\goalie.png')
+img_b = pygame.image.load('Intro to Pygame Graphics\soccer_ball.png')
 
 DARKNESS = pygame.Surface(SIZE)
 DARKNESS.set_alpha(200)
@@ -294,14 +294,6 @@ while not done:
     screen.blit(SAVES, (355, 100))
     screen.blit(SAVES, (460, 100))
 
-    # Goal
-    pygame.draw.rect(screen, WHITE, [320, 140, 160, 80], 5)
-    pygame.draw.line(screen, WHITE, [340, 200], [460, 200], 3)
-    pygame.draw.line(screen, WHITE, [320, 220], [340, 200], 3)
-    pygame.draw.line(screen, WHITE, [480, 220], [460, 200], 3)
-    pygame.draw.line(screen, WHITE, [320, 140], [340, 200], 3)
-    pygame.draw.line(screen, WHITE, [480, 140], [460, 200], 3)
-
     # 6 yard line goal box
     pygame.draw.line(screen, WHITE, [310, 220], [270, 270], 3)
     pygame.draw.line(screen, WHITE, [270, 270], [530, 270], 2)
@@ -344,6 +336,40 @@ while not done:
     pygame.draw.ellipse(screen, light_color, [650, 20, 20, 20])
     pygame.draw.ellipse(screen, light_color, [670, 20, 20, 20])
     pygame.draw.line(screen, GRAY, [590, 20], [690, 20], 2)
+
+    def draw_goal():
+        pygame.draw.rect(screen, WHITE, [320, 140, 160, 80], 5)
+        pygame.draw.line(screen, WHITE, [340, 200], [460, 200], 3)
+        pygame.draw.line(screen, WHITE, [320, 220], [340, 200], 3)
+        pygame.draw.line(screen, WHITE, [480, 220], [460, 200], 3)
+        pygame.draw.line(screen, WHITE, [320, 140], [340, 200], 3)
+        pygame.draw.line(screen, WHITE, [480, 140], [460, 200], 3)
+
+        #back of net vertical
+        for i in range(10):
+            pygame.draw.line(screen, WHITE, [384 + (i*4), 140], [384 + (i * 4), 200], 1)
+        for i in range(13):
+            pygame.draw.line(screen, WHITE, [325 + (i*5), 140], [341 + (i * 3), 200], 1)
+            pygame.draw.line(screen, WHITE, [424 + (i*5), 140], [423 + (i * 3), 200], 1)
+            #back of net horizontal
+            pygame.draw.line(screen, WHITE, [324, 144 + (i*4)], [476, 144 + (i*4)], 1)
+
+        #net left and right
+        for i in range(7):
+            pygame.draw.line(screen, WHITE, [320, 140], [324 + (i * 2), 216 - (i*2)], 1)
+            pygame.draw.line(screen, WHITE, [480, 140], [476 - (i * 2), 216 - (i*2)], 1)
+    
+    # Calling the method
+    draw_goal()
+
+    """
+    # Goal
+    pygame.draw.rect(screen, WHITE, [320, 140, 160, 80], 5)
+    pygame.draw.line(screen, WHITE, [340, 200], [460, 200], 3)
+    pygame.draw.line(screen, WHITE, [320, 220], [340, 200], 3)
+    pygame.draw.line(screen, WHITE, [480, 220], [460, 200], 3)
+    pygame.draw.line(screen, WHITE, [320, 140], [340, 200], 3)
+    pygame.draw.line(screen, WHITE, [480, 140], [460, 200], 3)
 
     # Net
     pygame.draw.line(screen, WHITE, [325, 140], [341, 200], 1)
@@ -417,6 +443,7 @@ while not done:
     pygame.draw.line(screen, WHITE, [335, 188], [465, 188], 1)
     pygame.draw.line(screen, WHITE, [335, 192], [465, 192], 1)
     pygame.draw.line(screen, WHITE, [335, 196], [465, 196], 1)
+    """
 
     # Goalie
     screen.blit(img,(goalie_x, goalie_y))    
@@ -429,6 +456,16 @@ while not done:
     pygame.draw.polygon(screen, RED, [[120, 220], [0, 340], [0, 290], [120, 180]])
     pygame.draw.polygon(screen, WHITE, [[120, 180], [0, 100], [0, 290]])
 
+
+    #Drawing flags
+    def draw_flag(flagColor, flagPoints, poleColor, poleTop, poleBottom, poleWidth):
+        pygame.draw.line(screen, poleColor, poleTop, poleBottom, poleWidth)
+        pygame.draw.polygon(screen, flagColor, flagPoints)
+    
+    draw_flag(RED, ([132, 190], [125, 196], [135, 205]), BRIGHT_YELLOW, [140, 220], [135, 190], 3)
+    draw_flag(RED, ([668, 190], [675, 196], [665, 205]), BRIGHT_YELLOW, [660, 220], [665, 190], 3)
+
+    '''
     # Corner flag right
     pygame.draw.line(screen, BRIGHT_YELLOW, [140, 220], [135, 190], 3)
     pygame.draw.polygon(screen, RED, [[132, 190], [125, 196], [135, 205]])
@@ -436,6 +473,7 @@ while not done:
     # Corner flag left
     pygame.draw.line(screen, BRIGHT_YELLOW, [660, 220], [665, 190], 3)
     pygame.draw.polygon(screen, RED, [[668, 190], [675, 196], [665, 205]])
+    '''
 
     # Soccer-ball
     screen.blit(img_b, (ball_x, ball_y))
