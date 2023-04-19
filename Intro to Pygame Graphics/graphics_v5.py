@@ -44,8 +44,8 @@ largenumberfont = pygame.font.SysFont("impact", 30)
 scorefont = pygame.font.SysFont("impact", 20)
 
 # Images
-img = pygame.image.load('Intro to Pygame Graphics\major league soccer animation\goalie.png')
-img_b = pygame.image.load('Intro to Pygame Graphics\soccer_ball.png')
+img = pygame.image.load("Intro to Pygame Graphics\major league soccer animation\goalie.png")
+img_b = pygame.image.load("Intro to Pygame Graphics\soccer_ball.png")
 
 DARKNESS = pygame.Surface(SIZE)
 DARKNESS.set_alpha(200)
@@ -168,7 +168,7 @@ while not done:
     SEE_THROUGH.set_colorkey(ck)
     
     if not day:
-    # Stars
+        # Stars
         for s in stars:
             pygame.draw.ellipse(screen, WHITE, s)
 
