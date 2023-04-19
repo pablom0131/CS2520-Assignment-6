@@ -304,16 +304,17 @@ while not done:
     """
     
     def draw_lights(x, y):
-        tempX = x
+        temp_x = x
         pygame.draw.line(screen, GRAY, [x, 60], [y, 60], 2)
-        while tempX != y:
-            pygame.draw.ellipse(screen, light_color, [tempX, 40, 20, 20])
-            tempX += 20
+        while temp_x != y:
+            pygame.draw.ellipse(screen, light_color, [temp_x, 40, 20, 20])
+            temp_x += 20
         pygame.draw.line(screen, GRAY, [x, 40], [y, 40], 2)
-        tempX = x
-        while tempX != y:
-            pygame.draw.ellipse(screen, light_color, [tempX, 20, 20, 20])
-            tempX += 20
+
+        temp_x = x
+        while temp_x != y:
+            pygame.draw.ellipse(screen, light_color, [temp_x, 20, 20, 20])
+            temp_x += 20
         pygame.draw.line(screen, GRAY, [x, 20], [y, 20], 2)
     
     # Lights
