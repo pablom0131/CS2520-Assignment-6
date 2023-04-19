@@ -6,18 +6,15 @@ import random
 # Initialize game engine
 pygame.init()
 
-
 # Window
 SIZE = (800, 600)
 TITLE = "Major League Soccer"
 screen = pygame.display.set_mode(SIZE)
 pygame.display.set_caption(TITLE)
 
-
 # Timer
 clock = pygame.time.Clock()
 refresh_rate = 60
-
 
 # Colors
 ''' add colors you use as RGB values here '''
@@ -50,7 +47,6 @@ scorefont = pygame.font.SysFont("impact", 20)
 img = pygame.image.load('goalie.jpg')
 img_b = pygame.image.load('soccer_ball.png')
 
-
 DARKNESS = pygame.Surface(SIZE)
 DARKNESS.set_alpha(200)
 DARKNESS.fill((0, 0, 0))
@@ -65,7 +61,6 @@ def draw_cloud(x, y):
     pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 10, y, 16, 16])
     pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 20, y + 8, 10, 10])
     pygame.draw.rect(SEE_THROUGH, cloud_color, [x + 6, y + 8, 18, 10])
-
 
 # Config
 lights_on = True
@@ -83,7 +78,6 @@ for i in range(20):
     x = random.randrange(-100, 1600)
     y = random.randrange(0, 150)
     clouds.append([x, y])
-
 
 seconds = 45 * 60
 ticks = 0
@@ -113,10 +107,6 @@ while not done:
                 lights_on = not lights_on
             elif event.key == pygame.K_n:
                 day = not day
-            
-                
-
-
     state = pygame.key.get_pressed()
 
     left = state[pygame.K_LEFT]
@@ -125,7 +115,6 @@ while not done:
     s = state[pygame.K_s]
     d = state[pygame.K_d]
     w = state[pygame.K_w]
-                
 
     # Game logic (Check for collisions, update points, etc.)
     ''' leave this section alone for now ''' 
@@ -170,7 +159,6 @@ while not done:
         ball_x += 4
     elif w == True and ball_y >= 200:
         ball_y -= 4
-    
         
     # Drawing code (Describe the picture. It isn't actually drawn yet.)
     screen.fill(sky_color)
@@ -182,15 +170,11 @@ while not done:
         for s in stars:
             pygame.draw.ellipse(screen, WHITE, s)
 
-
-
-
     pygame.draw.rect(screen, field_color, [0, 180, 800 , 420])
     pygame.draw.rect(screen, stripe_color, [0, 180, 800, 42])
     pygame.draw.rect(screen, stripe_color, [0, 264, 800, 52])
     pygame.draw.rect(screen, stripe_color, [0, 368, 800, 62])
     pygame.draw.rect(screen, stripe_color, [0, 492, 800, 82])
-
 
     '''fence'''
     y = 170
@@ -210,13 +194,10 @@ while not done:
     else:
         pygame.draw.ellipse(screen, WHITE, [520, 50, 40, 40]) 
         pygame.draw.ellipse(screen, sky_color, [530, 45, 40, 40])
-
-    
     
     for c in clouds:
         draw_cloud(c[0], c[1])
     screen.blit(SEE_THROUGH, (0, 0))   
-
 
     #banner
     pygame.draw.polygon(screen, BLACK, [[300, 100], [360, 40], [360, 160]])
@@ -264,7 +245,6 @@ while not done:
     HOME = myfont.render("HOME", 1, (255, 255, 255))
     screen.blit(HOME, (313, 43))
 
-    
     m = seconds // 60
     s = seconds % 60
     m = str(m)
@@ -274,7 +254,6 @@ while not done:
         s = str(s)
     time_str = m + ":" + s
 
-    
     timer = largenumberfont.render(time_str, 1, RED)
     screen.blit(timer, (368, 43))
 
@@ -283,15 +262,12 @@ while not done:
     else:
         halfnum = numbersfont.render("1", 1, RED)
 
-
-    
     if home_score == 0:
         homenum = scorefont.render("0", 1, RED)
     elif home_score == 1:
         homenum = scorefont.render("1", 1, RED)
     else:
         homenum = scorefont.render("00", 1, RED)
-
     
     if guest_score == 0:
         guestnum = scorefont.render("0", 1, RED)
@@ -302,8 +278,6 @@ while not done:
 
     homeshots = numbersfont.render(str(home_shots), 1, RED)
     screen.blit(homeshots, (320, 110))
-
-
 
     screen.blit(guestnum, (477, 57)) 
     screen.blit(homenum, (335, 57))    
@@ -319,7 +293,6 @@ while not done:
     screen.blit(SAVES, (355, 100))
     screen.blit(SAVES, (460, 100))
 
-
     #goal
     pygame.draw.rect(screen, WHITE, [320, 140, 160, 80], 5)
     pygame.draw.line(screen, WHITE, [340, 200], [460, 200], 3)
@@ -327,8 +300,6 @@ while not done:
     pygame.draw.line(screen, WHITE, [480, 220], [460, 200], 3)
     pygame.draw.line(screen, WHITE, [320, 140], [340, 200], 3)
     pygame.draw.line(screen, WHITE, [480, 140], [460, 200], 3)
-
-
 
     #6 yard line goal box
     pygame.draw.line(screen, WHITE, [310, 220], [270, 270], 3)
@@ -359,8 +330,6 @@ while not done:
     pygame.draw.ellipse(screen, GRAY, [630, 195, 20, 10])
 
     #lights
-
-        
     pygame.draw.line(screen, GRAY, [590, 60], [690, 60], 2)
     pygame.draw.ellipse(screen, light_color, [590, 40, 20, 20])
     pygame.draw.ellipse(screen, light_color, [610, 40, 20, 20])
@@ -455,12 +424,10 @@ while not done:
     pygame.draw.polygon(screen, RED, [[680, 220], [800, 340], [800, 290], [680, 180]])
     pygame.draw.polygon(screen, WHITE, [[680, 180], [800, 100], [800, 290]])
 
-  
     #stands left
     pygame.draw.polygon(screen, RED, [[120, 220], [0, 340], [0, 290], [120, 180]])
     pygame.draw.polygon(screen, WHITE, [[120, 180], [0, 100], [0, 290]])
     #people
-    
 
     #corner flag right
     pygame.draw.line(screen, BRIGHT_YELLOW, [140, 220], [135, 190], 3)
@@ -468,8 +435,7 @@ while not done:
 
     #corner flag left
     pygame.draw.line(screen, BRIGHT_YELLOW, [660, 220], [665, 190], 3)
-    pygame.draw.polygon(screen, RED, [[668, 190], [675, 196], [665, 205]]) 
-
+    pygame.draw.polygon(screen, RED, [[668, 190], [675, 196], [665, 205]])
 
     #soccerball
     screen.blit(img_b, (ball_x, ball_y))
@@ -483,14 +449,11 @@ while not done:
     #pygame.draw.arc(screen, ORANGE, [100, 100, 100, 100], 0, math.pi/2, 1)
     #pygame.draw.arc(screen, BLACK, [100, 100, 100, 100], 0, math.pi/2, 50)
 
-
     # Update screen (Actually draw the picture in the window.)
     pygame.display.flip()
 
-
     # Limit refresh rate of game loop 
     clock.tick(refresh_rate)
-
 
 # Close window and quit
 pygame.quit()
