@@ -298,12 +298,34 @@ while not done:
     pygame.draw.line(screen, WHITE, [310, 220], [270, 270], 3)
     pygame.draw.line(screen, WHITE, [270, 270], [530, 270], 2)
     pygame.draw.line(screen, WHITE, [530, 270], [490, 220], 3)
-
+    
+    def draw_light_pole(x):
+        pygame.draw.rect(screen, GRAY, [x, 60, 20, 140])
+        pygame.draw.ellipse(screen, GRAY, [x, 195, 20, 10])
+        
     # Light pole 1
+    draw_light_pole(150)
+    """
     pygame.draw.rect(screen, GRAY, [150, 60, 20, 140])
     pygame.draw.ellipse(screen, GRAY, [150, 195, 20, 10])
-
+    """
+    
+    def draw_lights(x, y):
+        tempX = x
+        pygame.draw.line(screen, GRAY, [x, 60], [y, 60], 2)
+        while tempX != y:
+            pygame.draw.ellipse(screen, light_color, [tempX, 40, 20, 20])
+            tempX += 20
+        pygame.draw.line(screen, GRAY, [x, 40], [y, 40], 2)
+        tempX = x
+        while tempX != y:
+            pygame.draw.ellipse(screen, light_color, [tempX, 20, 20, 20])
+            tempX += 20
+        pygame.draw.line(screen, GRAY, [x, 20], [y, 20], 2)
+    
     # Lights
+    draw_lights(110, 210)
+    """
     pygame.draw.line(screen, GRAY, [110, 60], [210, 60], 2)
     pygame.draw.ellipse(screen, light_color, [110, 40, 20, 20])
     pygame.draw.ellipse(screen, light_color, [130, 40, 20, 20])
@@ -317,12 +339,18 @@ while not done:
     pygame.draw.ellipse(screen, light_color, [170, 20, 20, 20])
     pygame.draw.ellipse(screen, light_color, [190, 20, 20, 20])
     pygame.draw.line(screen, GRAY, [110, 20], [210, 20], 2)
-
+    """
+    
     # Light pole 2
+    draw_light_pole(630)
+    """
     pygame.draw.rect(screen, GRAY, [630, 60, 20, 140])
     pygame.draw.ellipse(screen, GRAY, [630, 195, 20, 10])
-
+    """
+    
     # Lights
+    draw_lights(590, 690)
+    """
     pygame.draw.line(screen, GRAY, [590, 60], [690, 60], 2)
     pygame.draw.ellipse(screen, light_color, [590, 40, 20, 20])
     pygame.draw.ellipse(screen, light_color, [610, 40, 20, 20])
@@ -336,7 +364,7 @@ while not done:
     pygame.draw.ellipse(screen, light_color, [650, 20, 20, 20])
     pygame.draw.ellipse(screen, light_color, [670, 20, 20, 20])
     pygame.draw.line(screen, GRAY, [590, 20], [690, 20], 2)
-
+    """
     def draw_goal():
         pygame.draw.rect(screen, WHITE, [320, 140, 160, 80], 5)
         pygame.draw.line(screen, WHITE, [340, 200], [460, 200], 3)
