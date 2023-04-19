@@ -1,4 +1,3 @@
-# Imports
 import pygame
 import math
 import random
@@ -17,7 +16,6 @@ clock = pygame.time.Clock()
 refresh_rate = 60
 
 # Colors
-''' add colors you use as RGB values here '''
 RED = (255, 0, 0)
 GREEN = (52, 166, 36)
 BLUE = (29, 116, 248)
@@ -67,7 +65,6 @@ def draw_cloud(x, y):
 # Config
 lights_on = True
 day = True
-
 stars = []
 for n in range(200):
     x = random.randrange(0, 800)
@@ -97,10 +94,8 @@ ball_y = 400
     
 # Game loop
 done = False
-
 while not done:
     # Event processing (react to key presses, mouse clicks, etc.)
-    ''' for now, we'll just check to see if the X is clicked '''
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
@@ -119,7 +114,6 @@ while not done:
     w = state[pygame.K_w]
 
     # Game logic (check for collisions, update points, etc.)
-    ''' leave this section alone for now ''' 
     if lights_on:
         light_color = YELLOW
     else:
@@ -178,7 +172,6 @@ while not done:
     pygame.draw.rect(screen, stripe_color, [0, 368, 800, 62])
     pygame.draw.rect(screen, stripe_color, [0, 492, 800, 82])
 
-    '''fence'''
     y = 170
     for x in range(5, 800, 30):
         pygame.draw.polygon(screen, NIGHT_GRAY, [[x + 2, y], [x + 2, y + 15], [x, y + 15], [x, y]])
@@ -507,13 +500,7 @@ while not done:
     screen.blit(img_b, (ball_x, ball_y))
     # DARKNESS
     if not day and not lights_on:
-        screen.blit(DARKNESS, (0, 0))    
-    
-    #pygame.draw.polygon(screen, BLACK, [[200, 200], [50,400], [600, 500]], 10)
-
-    ''' angles for arcs are measured in radians (a pre-cal topic) '''
-    #pygame.draw.arc(screen, ORANGE, [100, 100, 100, 100], 0, math.pi/2, 1)
-    #pygame.draw.arc(screen, BLACK, [100, 100, 100, 100], 0, math.pi/2, 50)
+        screen.blit(DARKNESS, (0, 0))
 
     # Update screen (Actually draw the picture in the window.)
     pygame.display.flip()
