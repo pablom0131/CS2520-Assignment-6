@@ -148,18 +148,18 @@ while not done:
         seconds -= 1
         ticks = 0
 
-    if left == True and goalie_x >= 300:
+    if left is True and goalie_x >= 300:
         goalie_x -= 2
-    elif right == True and goalie_x <= 400:
+    elif right is True and goalie_x <= 400:
         goalie_x += 2
 
-    if a == True and ball_x >=0:
+    if a is True and ball_x >=0:
         ball_x -= 4
-    elif s == True and ball_y <= 600:
+    elif s is True and ball_y <= 600:
         ball_y += 4
-    elif d == True and ball_x <= 750:
+    elif d is True and ball_x <= 750:
         ball_x += 4
-    elif w == True and ball_y >= 200:
+    elif w is True and ball_y >= 200:
         ball_y -= 4
         
     # Drawing code (describe the picture. It isn't actually drawn yet.)
