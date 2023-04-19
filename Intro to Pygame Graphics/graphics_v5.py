@@ -366,16 +366,16 @@ while not done:
         pygame.draw.line(screen, WHITE, [320, 140], [340, 200], 3)
         pygame.draw.line(screen, WHITE, [480, 140], [460, 200], 3)
 
-        #back of net vertical
+        # Back of net vertical
         for i in range(10):
             pygame.draw.line(screen, WHITE, [384 + (i*4), 140], [384 + (i * 4), 200], 1)
         for i in range(13):
             pygame.draw.line(screen, WHITE, [325 + (i*5), 140], [341 + (i * 3), 200], 1)
             pygame.draw.line(screen, WHITE, [424 + (i*5), 140], [423 + (i * 3), 200], 1)
-            #back of net horizontal
+            # Back of net horizontal
             pygame.draw.line(screen, WHITE, [324, 144 + (i*4)], [476, 144 + (i*4)], 1)
 
-        #net left and right
+        # Net left and right
         for i in range(7):
             pygame.draw.line(screen, WHITE, [320, 140], [324 + (i * 2), 216 - (i*2)], 1)
             pygame.draw.line(screen, WHITE, [480, 140], [476 - (i * 2), 216 - (i*2)], 1)
