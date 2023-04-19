@@ -478,9 +478,9 @@ while not done:
     pygame.draw.polygon(screen, WHITE, [[120, 180], [0, 100], [0, 290]])
 
     # Drawing flags
-    def draw_flag(flagColor, flagPoints, poleColor, poleTop, poleBottom, poleWidth):
-        pygame.draw.line(screen, poleColor, poleTop, poleBottom, poleWidth)
-        pygame.draw.polygon(screen, flagColor, flagPoints)
+    def draw_flag(flag_color, flag_points, pole_color, pole_top, pole_bottom, pole_width):
+        pygame.draw.line(screen, pole_color, pole_top, pole_bottom, pole_width)
+        pygame.draw.polygon(screen, flag_color, flag_points)
 
 
     draw_flag(RED, ([132, 190], [125, 196], [135, 205]), BRIGHT_YELLOW, [140, 220], [135, 190], 3)
