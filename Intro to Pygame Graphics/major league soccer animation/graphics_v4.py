@@ -177,75 +177,75 @@ while not done:
             c[0] = random.randrange(800, 1600)
             c[1] = random.randrange(0, 150)
 
-    # Drawing code (Describe the picture. It isn't actually drawn yet.)
+    # Drawing code
     screen.fill(sky_color)
     SEE_THROUGH.fill(ck)
     SEE_THROUGH.set_colorkey(ck)
 
     if not day:
-        # stars
         for s in stars:
             pygame.draw.ellipse(screen, WHITE, s)
 
-    pygame.draw.rect(screen, field_color, [0, 180, 800, 420])
-    pygame.draw.rect(screen, stripe_color, [0, 180, 800, 42])
-    pygame.draw.rect(screen, stripe_color, [0, 264, 800, 52])
-    pygame.draw.rect(screen, stripe_color, [0, 368, 800, 62])
-    pygame.draw.rect(screen, stripe_color, [0, 492, 800, 82])
+    pygame.draw.rect(screen, field_color, [0, 180, 800, 420])   # Draws field with specific color
+    pygame.draw.rect(screen, stripe_color, [0, 180, 800, 42])   # Draws field stripe behind goal
+    pygame.draw.rect(screen, stripe_color, [0, 264, 800, 52])   # Draws field stripe before goal
+    pygame.draw.rect(screen, stripe_color, [0, 368, 800, 62])   # Draws field stripe in middle
+    pygame.draw.rect(screen, stripe_color, [0, 492, 800, 82])   # Draws field stripe on bottom
 
-    # Drawing fence
+    # Draw fence posts
     y = 170
     for x in range(5, 800, 30):
-        pygame.draw.polygon(screen, NIGHT_GRAY, [
-                            [x + 2, y], [x + 2, y + 15], [x, y + 15], [x, y]])
-
+        pygame.draw.polygon(screen, NIGHT_GRAY, [[x + 2, y], [x + 2, y + 15], [x, y + 15], [x, y]])
+    # Draw vertical fencing
     y = 170
     for x in range(5, 800, 3):
         pygame.draw.line(screen, NIGHT_GRAY, [x, y], [x, y + 15], 1)
-
+    # Draw horizontal fencing
     x = 0
     for y in range(170, 185, 4):
         pygame.draw.line(screen, NIGHT_GRAY, [x, y], [x + 800, y], 1)
 
+    # Draw the sun or moon
     if day:
+        # Sun
         pygame.draw.ellipse(screen, BRIGHT_YELLOW, [520, 50, 40, 40])
     else:
+        # Moon
         pygame.draw.ellipse(screen, WHITE, [520, 50, 40, 40])
         pygame.draw.ellipse(screen, sky_color, [530, 45, 40, 40])
 
+    # Draw the clouds
     for c in clouds:
         draw_cloud(c[0], c[1])
     screen.blit(SEE_THROUGH, (0, 0))
 
-    # score board pole
+    # Draw score board pole
     pygame.draw.rect(screen, GRAY, [390, 120, 20, 70])
-
-    # score board
+    # Draw score board
     pygame.draw.rect(screen, BLACK, [300, 40, 200, 90])
     pygame.draw.rect(screen, WHITE, [302, 42, 198, 88], 2)
-    
+
+    # Draw court
     draw_court()
 
-    # Right light pole
+    # Draw right light pole
     draw_light_pole(150, 110, 210)
-    # Left light pole
+    # Draw left light pole
     draw_light_pole(630, 590, 690)
 
     draw_goal()
 
-    # Right stands
+    # Draw right stands
     draw_stand(RED, [[680, 220], [800, 340], [800, 290], [680, 180]], WHITE, [[680, 180], [800, 100], [800, 290]])
-    # Left stands
+    # Draw left stands
     draw_stand(RED, [[120, 220], [0, 340], [0, 290], [120, 180]], WHITE, [[120, 180], [0, 100], [0, 290]])
 
-    # Right flag
-    draw_flag(RED, ([132, 190], [125, 196], [135, 205]),
-              BRIGHT_YELLOW, [140, 220], [135, 190], 3)
-    # Left flag
-    draw_flag(RED, ([668, 190], [675, 196], [665, 205]),
-              BRIGHT_YELLOW, [660, 220], [665, 190], 3)
+    # Draw right flag
+    draw_flag(RED, ([132, 190], [125, 196], [135, 205]), BRIGHT_YELLOW, [140, 220], [135, 190], 3)
+    # Draw left flag
+    draw_flag(RED, ([668, 190], [675, 196], [665, 205]), BRIGHT_YELLOW, [660, 220], [665, 190], 3)
 
-    # DARKNESS
+    # Changes brightness depending on time of day and lights
     if not day and not lights_on:
         screen.blit(DARKNESS, (0, 0))
 
@@ -254,7 +254,6 @@ while not done:
 
     # Limit refresh rate of game loop
     clock.tick(refresh_rate)
-
 
 # Close window and quit
 pygame.quit()
