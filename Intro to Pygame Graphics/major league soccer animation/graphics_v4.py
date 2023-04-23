@@ -23,19 +23,19 @@ def draw_court():
     pygame.draw.line(screen, WHITE, [180, 300], [620, 300], 3)
     pygame.draw.line(screen, WHITE, [620, 300], [540, 220], 5)
 
-    # safety circle
+    # Safety circle
     pygame.draw.ellipse(screen, WHITE, [240, 500, 320, 160], 5)
 
-    # arc at the top of the goal box
+    # Arc at the top of the goal box
     pygame.draw.arc(
         screen, WHITE, [330, 280, 140, 40], math.pi, 2 * math.pi, 5)
 
-    # out of bounds lines
+    # Out of bounds lines
     pygame.draw.line(screen, WHITE, [0, 580], [800, 580], 5)
-    # left
+    # Left line
     pygame.draw.line(screen, WHITE, [0, 360], [140, 220], 5)
     pygame.draw.line(screen, WHITE, [140, 220], [660, 220], 3)
-    # right
+    # Right line
     pygame.draw.line(screen, WHITE, [660, 220], [800, 360], 5)
 
 
@@ -52,23 +52,20 @@ def draw_goal():
     pygame.draw.line(screen, WHITE, [320, 140], [340, 200], 3)
     pygame.draw.line(screen, WHITE, [480, 140], [460, 200], 3)
 
-    # Back of net vertical
-    for i in range(10):
-        pygame.draw.line(
-            screen, WHITE, [384 + (i*4), 140], [384 + (i * 4), 200], 1)
     for i in range(13):
-        pygame.draw.line(
-            screen, WHITE, [325 + (i*5), 140], [341 + (i * 3), 200], 1)
-        pygame.draw.line(
-            screen, WHITE, [424 + (i*5), 140], [423 + (i * 3), 200], 1)
-        # Back of net horizontal
-        pygame.draw.line(
-            screen, WHITE, [324, 144 + (i*4)], [476, 144 + (i*4)], 1)
+        # Back of net vertical
+        if i < 10:
+            pygame.draw.line(screen, WHITE, [384 + (i * 4), 140], [384 + (i * 4), 200], 1)
 
-    # Net left and right
-    for i in range(7):
-        pygame.draw.line(screen, WHITE, [320, 140], [324 + (i * 2), 216 - (i*2)], 1)
-        pygame.draw.line(screen, WHITE, [480, 140], [476 - (i * 2), 216 - (i*2)], 1)
+        # Back of net horizontal
+        pygame.draw.line(screen, WHITE, [325 + (i * 5), 140], [341 + (i * 3), 200], 1)
+        pygame.draw.line(screen, WHITE, [424 + (i * 5), 140], [423 + (i * 3), 200], 1)
+        pygame.draw.line(screen, WHITE, [324, 144 + (i * 4)], [476, 144 + (i * 4)], 1)
+
+        # Left and right sides of net
+        if i < 7:
+            pygame.draw.line(screen, WHITE, [320, 140], [324 + (i * 2), 216 - (i * 2)], 1)
+            pygame.draw.line(screen, WHITE, [480, 140], [476 - (i * 2), 216 - (i * 2)], 1)
 
 
 def draw_light_pole(polePosition, lightX, lightY):
