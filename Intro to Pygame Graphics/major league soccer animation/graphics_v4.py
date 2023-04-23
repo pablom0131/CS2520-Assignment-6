@@ -4,6 +4,7 @@ import math
 import random
 
 
+# PUBLIC METHODS
 def draw_cloud(x, y):
     pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x, y + 8, 10, 10])
     pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 6, y + 4, 8, 8])
@@ -27,8 +28,7 @@ def draw_court():
     pygame.draw.ellipse(screen, WHITE, [240, 500, 320, 160], 5)
 
     # Arc at the top of the goal box
-    pygame.draw.arc(
-        screen, WHITE, [330, 280, 140, 40], math.pi, 2 * math.pi, 5)
+    pygame.draw.arc(screen, WHITE, [330, 280, 140, 40], math.pi, 2 * math.pi, 5)
 
     # Out of bounds lines
     pygame.draw.line(screen, WHITE, [0, 580], [800, 580], 5)
@@ -80,9 +80,9 @@ def draw_light_pole(pole_position, x, y):
         pygame.draw.line(screen, GRAY, [x, 60 - (i*20)], [y, 60 - (i*20)], 2)
 
 
-def draw_stand(barricadeColor, barricade, audienceColor, audience):
-    pygame.draw.polygon(screen, barricadeColor, barricade)
-    pygame.draw.polygon(screen, audienceColor, audience)
+def draw_stand(barricade_color, barricade, audience_color, audience):
+    pygame.draw.polygon(screen, barricade_color, barricade)
+    pygame.draw.polygon(screen, audience_color, audience)
 
 
 # Initialize game engine
