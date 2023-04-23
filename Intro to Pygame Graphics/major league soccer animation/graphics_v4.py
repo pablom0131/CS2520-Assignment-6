@@ -3,9 +3,94 @@ import pygame
 import math
 import random
 
+
+def draw_cloud(x, y):
+    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x, y + 8, 10, 10])
+    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 6, y + 4, 8, 8])
+    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 10, y, 16, 16])
+    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 20, y + 8, 10, 10])
+    pygame.draw.rect(SEE_THROUGH, cloud_color, [x + 6, y + 8, 18, 10])
+
+
+def draw_court():
+    # 6 yard line goal box
+    pygame.draw.line(screen, WHITE, [310, 220], [270, 270], 3)
+    pygame.draw.line(screen, WHITE, [270, 270], [530, 270], 2)
+    pygame.draw.line(screen, WHITE, [530, 270], [490, 220], 3)
+
+    # 18 yard line goal box
+    pygame.draw.line(screen, WHITE, [260, 220], [180, 300], 5)
+    pygame.draw.line(screen, WHITE, [180, 300], [620, 300], 3)
+    pygame.draw.line(screen, WHITE, [620, 300], [540, 220], 5)
+
+    # safety circle
+    pygame.draw.ellipse(screen, WHITE, [240, 500, 320, 160], 5)
+
+    # arc at the top of the goal box
+    pygame.draw.arc(
+        screen, WHITE, [330, 280, 140, 40], math.pi, 2 * math.pi, 5)
+
+    # out of bounds lines
+    pygame.draw.line(screen, WHITE, [0, 580], [800, 580], 5)
+    # left
+    pygame.draw.line(screen, WHITE, [0, 360], [140, 220], 5)
+    pygame.draw.line(screen, WHITE, [140, 220], [660, 220], 3)
+    # right
+    pygame.draw.line(screen, WHITE, [660, 220], [800, 360], 5)
+
+
+def draw_flag(flag_color, flag_points, pole_color, pole_top, pole_bottom, pole_width):
+    pygame.draw.line(screen, pole_color, pole_top, pole_bottom, pole_width)
+    pygame.draw.polygon(screen, flag_color, flag_points)
+
+
+def draw_goal():
+    pygame.draw.rect(screen, WHITE, [320, 140, 160, 80], 5)
+    pygame.draw.line(screen, WHITE, [340, 200], [460, 200], 3)
+    pygame.draw.line(screen, WHITE, [320, 220], [340, 200], 3)
+    pygame.draw.line(screen, WHITE, [480, 220], [460, 200], 3)
+    pygame.draw.line(screen, WHITE, [320, 140], [340, 200], 3)
+    pygame.draw.line(screen, WHITE, [480, 140], [460, 200], 3)
+
+    # Back of net vertical
+    for i in range(10):
+        pygame.draw.line(
+            screen, WHITE, [384 + (i*4), 140], [384 + (i * 4), 200], 1)
+    for i in range(13):
+        pygame.draw.line(
+            screen, WHITE, [325 + (i*5), 140], [341 + (i * 3), 200], 1)
+        pygame.draw.line(
+            screen, WHITE, [424 + (i*5), 140], [423 + (i * 3), 200], 1)
+        # Back of net horizontal
+        pygame.draw.line(
+            screen, WHITE, [324, 144 + (i*4)], [476, 144 + (i*4)], 1)
+
+    # Net left and right
+    for i in range(7):
+        pygame.draw.line(screen, WHITE, [320, 140], [324 + (i * 2), 216 - (i*2)], 1)
+        pygame.draw.line(screen, WHITE, [480, 140], [476 - (i * 2), 216 - (i*2)], 1)
+
+
+def draw_light_pole(polePosition, lightX, lightY):
+    pygame.draw.rect(screen, GRAY, [polePosition, 60, 20, 140])
+    pygame.draw.ellipse(screen, GRAY, [polePosition, 195, 20, 10])
+    temp_x = lightX
+    while (temp_x != lightY):
+        pygame.draw.ellipse(screen, light_color, [temp_x, 40, 20, 20])
+        pygame.draw.ellipse(screen, light_color, [temp_x, 20, 20, 20])
+        temp_x += 20
+    for i in range(3):
+        pygame.draw.line(
+            screen, GRAY, [lightX, 60 - (i * 20)], [lightY, 60 - (i * 20)], 2)
+
+
+def draw_stand(barricadeColor, barricade, audienceColor, audience):
+    pygame.draw.polygon(screen, barricadeColor, barricade)
+    pygame.draw.polygon(screen, audienceColor, audience)
+
+
 # Initialize game engine
 pygame.init()
-
 
 # Window
 SIZE = (800, 600)
@@ -13,14 +98,11 @@ TITLE = "Major League Soccer"
 screen = pygame.display.set_mode(SIZE)
 pygame.display.set_caption(TITLE)
 
-
 # Timer
 clock = pygame.time.Clock()
 refresh_rate = 60
 
-
 # Colors
-''' add colors you use as RGB values here '''
 RED = (255, 0, 0)
 GREEN = (52, 166, 36)
 BLUE = (29, 116, 248)
@@ -46,15 +128,6 @@ SEE_THROUGH = pygame.Surface((800, 180))
 SEE_THROUGH.set_alpha(150)
 SEE_THROUGH.fill((124, 118, 135))
 
-
-def draw_cloud(x, y):
-    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x, y + 8, 10, 10])
-    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 6, y + 4, 8, 8])
-    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 10, y, 16, 16])
-    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 20, y + 8, 10, 10])
-    pygame.draw.rect(SEE_THROUGH, cloud_color, [x + 6, y + 8, 18, 10])
-
-
 # Config
 lights_on = True
 day = True
@@ -74,10 +147,8 @@ for i in range(20):
 
 # Game loop
 done = False
-
 while not done:
     # Event processing (React to key presses, mouse clicks, etc.)
-    ''' for now, we'll just check to see if the X is clicked '''
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
@@ -88,7 +159,6 @@ while not done:
                 day = not day
 
     # Game logic (Check for collisions, update points, etc.)
-    ''' leave this section alone for now '''
     if lights_on:
         light_color = YELLOW
     else:
@@ -107,7 +177,6 @@ while not done:
 
     for c in clouds:
         c[0] -= 0.5
-
         if c[0] < -100:
             c[0] = random.randrange(800, 1600)
             c[1] = random.randrange(0, 150)
@@ -128,7 +197,7 @@ while not done:
     pygame.draw.rect(screen, stripe_color, [0, 368, 800, 62])
     pygame.draw.rect(screen, stripe_color, [0, 492, 800, 82])
 
-    '''fence'''
+    # Drawing fence
     y = 170
     for x in range(5, 800, 30):
         pygame.draw.polygon(screen, NIGHT_GRAY, [
@@ -158,48 +227,9 @@ while not done:
     # score board
     pygame.draw.rect(screen, BLACK, [300, 40, 200, 90])
     pygame.draw.rect(screen, WHITE, [302, 42, 198, 88], 2)
-
-    def draw_court():
-        # 6 yard line goal box
-        pygame.draw.line(screen, WHITE, [310, 220], [270, 270], 3)
-        pygame.draw.line(screen, WHITE, [270, 270], [530, 270], 2)
-        pygame.draw.line(screen, WHITE, [530, 270], [490, 220], 3)
-
-        # 18 yard line goal box
-        pygame.draw.line(screen, WHITE, [260, 220], [180, 300], 5)
-        pygame.draw.line(screen, WHITE, [180, 300], [620, 300], 3)
-        pygame.draw.line(screen, WHITE, [620, 300], [540, 220], 5)
-
-        # safety circle
-        pygame.draw.ellipse(screen, WHITE, [240, 500, 320, 160], 5)
-
-        # arc at the top of the goal box
-        pygame.draw.arc(
-        screen, WHITE, [330, 280, 140, 40], math.pi, 2 * math.pi, 5)
-    
-        # out of bounds lines
-        pygame.draw.line(screen, WHITE, [0, 580], [800, 580], 5)
-        # left
-        pygame.draw.line(screen, WHITE, [0, 360], [140, 220], 5)
-        pygame.draw.line(screen, WHITE, [140, 220], [660, 220], 3)
-        # right
-        pygame.draw.line(screen, WHITE, [660, 220], [800, 360], 5)
     
     draw_court()
 
-
-    #Function to draw light pole
-    def draw_light_pole(polePosition, lightX, lightY):
-        pygame.draw.rect(screen, GRAY, [polePosition, 60, 20, 140])
-        pygame.draw.ellipse(screen, GRAY, [polePosition, 195, 20, 10])
-        temp_x = lightX
-        while (temp_x != lightY):
-            pygame.draw.ellipse(screen, light_color, [temp_x, 40, 20, 20])
-            pygame.draw.ellipse(screen, light_color, [temp_x, 20, 20, 20])
-            temp_x += 20
-        for i in range(3):
-            pygame.draw.line(
-                screen, GRAY, [lightX, 60 - (i * 20)], [lightY, 60 - (i * 20)], 2)
     draw_light_pole(150, 110, 210)
     draw_light_pole(630, 590, 690)
 
@@ -230,34 +260,6 @@ while not done:
     draw_light_pole(630)
     draw_lights(590, 690)
     '''
-
-    def draw_goal():
-        pygame.draw.rect(screen, WHITE, [320, 140, 160, 80], 5)
-        pygame.draw.line(screen, WHITE, [340, 200], [460, 200], 3)
-        pygame.draw.line(screen, WHITE, [320, 220], [340, 200], 3)
-        pygame.draw.line(screen, WHITE, [480, 220], [460, 200], 3)
-        pygame.draw.line(screen, WHITE, [320, 140], [340, 200], 3)
-        pygame.draw.line(screen, WHITE, [480, 140], [460, 200], 3)
-
-        # Back of net vertical
-        for i in range(10):
-            pygame.draw.line(
-                screen, WHITE, [384 + (i*4), 140], [384 + (i * 4), 200], 1)
-        for i in range(13):
-            pygame.draw.line(
-                screen, WHITE, [325 + (i*5), 140], [341 + (i * 3), 200], 1)
-            pygame.draw.line(
-                screen, WHITE, [424 + (i*5), 140], [423 + (i * 3), 200], 1)
-            # Back of net horizontal
-            pygame.draw.line(
-                screen, WHITE, [324, 144 + (i*4)], [476, 144 + (i*4)], 1)
-
-        # Net left and right
-        for i in range(7):
-            pygame.draw.line(screen, WHITE, [320, 140], [
-                             324 + (i * 2), 216 - (i*2)], 1)
-            pygame.draw.line(screen, WHITE, [480, 140], [
-                             476 - (i * 2), 216 - (i*2)], 1)
 
     draw_goal()
     '''
@@ -344,9 +346,6 @@ while not done:
     pygame.draw.line(screen, WHITE, [335, 196], [465, 196], 1)
     '''
     # Function to draw stand
-    def draw_stand(barricadeColor, barricade, audienceColor, audience):
-        pygame.draw.polygon(screen, barricadeColor, barricade)
-        pygame.draw.polygon(screen, audienceColor, audience)
     draw_stand(RED, [[680, 220], [800, 340], [800, 290], [680, 180]], WHITE, [[680, 180], [800, 100], [800, 290]])
     draw_stand(RED, [[120, 220], [0, 340], [0, 290], [120, 180]], WHITE, [[120, 180], [0, 100], [0, 290]])
 
@@ -363,9 +362,7 @@ while not done:
     '''
 
     # Drawing Flags function
-    def draw_flag(flag_color, flag_points, pole_color, pole_top, pole_bottom, pole_width):
-        pygame.draw.line(screen, pole_color, pole_top, pole_bottom, pole_width)
-        pygame.draw.polygon(screen, flag_color, flag_points)
+
     # Drawing flags
     draw_flag(RED, ([132, 190], [125, 196], [135, 205]),
               BRIGHT_YELLOW, [140, 220], [135, 190], 3)
