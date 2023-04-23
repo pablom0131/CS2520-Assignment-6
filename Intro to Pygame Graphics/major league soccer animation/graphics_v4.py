@@ -68,17 +68,16 @@ def draw_goal():
             pygame.draw.line(screen, WHITE, [480, 140], [476 - (i * 2), 216 - (i * 2)], 1)
 
 
-def draw_light_pole(polePosition, lightX, lightY):
-    pygame.draw.rect(screen, GRAY, [polePosition, 60, 20, 140])
-    pygame.draw.ellipse(screen, GRAY, [polePosition, 195, 20, 10])
-    temp_x = lightX
-    while (temp_x != lightY):
+def draw_light_pole(pole_position, x, y):
+    pygame.draw.rect(screen, GRAY, [pole_position, 60, 20, 140])
+    pygame.draw.ellipse(screen, GRAY, [pole_position, 195, 20, 10])
+    temp_x = x
+    while temp_x != y:
         pygame.draw.ellipse(screen, light_color, [temp_x, 40, 20, 20])
         pygame.draw.ellipse(screen, light_color, [temp_x, 20, 20, 20])
         temp_x += 20
     for i in range(3):
-        pygame.draw.line(
-            screen, GRAY, [lightX, 60 - (i * 20)], [lightY, 60 - (i * 20)], 2)
+        pygame.draw.line(screen, GRAY, [x, 60 - (i*20)], [y, 60 - (i*20)], 2)
 
 
 def draw_stand(barricadeColor, barricade, audienceColor, audience):
