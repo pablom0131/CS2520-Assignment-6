@@ -40,6 +40,15 @@ def draw_court():
     pygame.draw.line(screen, WHITE, [660, 220], [800, 360], 5)
 
 
+# Method to draw stripes on soccer field
+def draw_field_stripes():
+    pygame.draw.rect(screen, field_color, [0, 180, 800, 420])   # Draws field with specific color
+    pygame.draw.rect(screen, stripe_color, [0, 180, 800, 42])   # Draws field stripe behind goal
+    pygame.draw.rect(screen, stripe_color, [0, 264, 800, 52])   # Draws field stripe before goal
+    pygame.draw.rect(screen, stripe_color, [0, 368, 800, 62])   # Draws field stripe in middle
+    pygame.draw.rect(screen, stripe_color, [0, 492, 800, 82])   # Draws field stripe on bottom
+
+
 # Method to draw a corner flag of specified color, pole color, and coordinates
 def draw_flag(flag_color, flag_points, pole_color, pole_top, pole_bottom, pole_width):
     pygame.draw.line(screen, pole_color, pole_top, pole_bottom, pole_width)
@@ -196,11 +205,7 @@ while not done:
         for s in stars:
             pygame.draw.ellipse(screen, WHITE, s)
 
-    pygame.draw.rect(screen, field_color, [0, 180, 800, 420])   # Draws field with specific color
-    pygame.draw.rect(screen, stripe_color, [0, 180, 800, 42])   # Draws field stripe behind goal
-    pygame.draw.rect(screen, stripe_color, [0, 264, 800, 52])   # Draws field stripe before goal
-    pygame.draw.rect(screen, stripe_color, [0, 368, 800, 62])   # Draws field stripe in middle
-    pygame.draw.rect(screen, stripe_color, [0, 492, 800, 82])   # Draws field stripe on bottom
+    draw_field_stripes()
 
     # Draws fence posts
     y = 170
