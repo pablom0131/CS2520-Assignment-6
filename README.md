@@ -36,4 +36,4 @@ Total: 100 points
 For a satisfactory grade, students should refactor the project using structural programming techniques, collaborate effectively, and present their work on a well-documented GitHub page.
 
 ## METHODOLOGY
-The main file we were working on is graphics_v4.py which is a game meant to emulate playing soccer. The PyGame module was instrumental in being able to launch and play the game. Currently, players who boot up the game are able to change the time of day and turn off and on the lights and we created various methods to make the code more readable and adaptable. 
+The main file we were working on is graphics_v4.py which is a game meant to emulate playing soccer. The PyGame module was instrumental in being able to launch and play the game. Currently, players who boot up the game are able to change the time of day and turn off and on the lights and we created various methods to make the code more readable and adaptable. Additionally we used block comments to describe the functionality of the methods we created and to describe what certain pieces of code were doing. 
