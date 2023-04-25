@@ -82,15 +82,16 @@ def draw_goal():
 
 # Method to draw a light pole at specified coordinates x and y
 def draw_light_pole(pole_position, x, y):
+    #Pole
     pygame.draw.rect(screen, GRAY, [pole_position, 60, 20, 140])
     pygame.draw.ellipse(screen, GRAY, [pole_position, 195, 20, 10])
-
+    #Lightbulbs
     temp_x = x
     while temp_x != y:
         pygame.draw.ellipse(screen, light_color, [temp_x, 40, 20, 20])
         pygame.draw.ellipse(screen, light_color, [temp_x, 20, 20, 20])
         temp_x += 20
-
+    #Layers connecting the rows of lightbulbs together
     for i in range(3):
         pygame.draw.line(screen, GRAY, [x, 60 - (i*20)], [y, 60 - (i*20)], 2)
 
