@@ -1,5 +1,5 @@
 # CS2520 Assignment 6
-**Group Members:** Garrett Rogers, Ben Luo, Pablo Martinez Castro
+**Group Members:** Garrett Rogers, Zihao Luo, Pablo Martinez Castro
 
 ## ASSIGNMENT INSTRUCTIONS
 For this week's assignment, you will be working in a group of 2-4 students to refactor a project provided by your instructor. Your objective is to modify the code in a way that allows for easy modifications such as altering object locations, quantities, and sizes. The main goal of this assignment is to enable the project to be quickly adapted to meet various requirements or design preferences.
@@ -36,4 +36,4 @@ Total: 100 points
 For a satisfactory grade, students should refactor the project using structural programming techniques, collaborate effectively, and present their work on a well-documented GitHub page.
 
 ## METHODOLOGY
-work in progress
+The main file we were working on is graphics_v4.py which is a game meant to emulate playing soccer. The PyGame module was instrumental in being able to launch and play the game. Currently, players who boot up the game are able to change the time of day and turn off and on the lights and we created various methods to make the code more readable and adaptable. 
